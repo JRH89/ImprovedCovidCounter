@@ -1,0 +1,31 @@
+h1 {
+    border: 4px solid red;
+    border-radius: 12px;
+    padding: 3px;
+}
+
+h2 {
+    border: 3px solid blue;
+    border-radius: 12px;
+    padding: 3px;
+   
+}
+.error-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+  }
+  td:nth-child(even), th:nth-child(even) {
+    background-color: #99bbf6;
+  }
+  td:nth-child(odd), th:nth-child(odd) {
+    background-color: #f699df;
+  }
