@@ -15,8 +15,18 @@ fetch(apiUrl)
         <td>${country.TotalDeaths}</td>
         <td>${Math.round((country.TotalDeaths/country.TotalConfirmed)*100)}%</td>
         <td>${country.NewDeaths}</td>
-      `;
+        `;
       document.getElementById('cases-by-country').appendChild(row);
     });
+  })
+  // Error Handling with div card
+  .catch(error => {
+    const errorCard = document.createElement('div');
+    errorCard.classList.add('error-card');
+    errorCard.innerHTML = `
+      <p>An error occurred while fetching COVID-19 data:</p>
+      <pre>${error.message}</pre>
+      <p>Please try again in a few moments.</p>
+    `;
+    document.body.appendChild(errorCard);
   });
-
