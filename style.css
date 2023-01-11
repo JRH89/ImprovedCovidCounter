@@ -7,10 +7,10 @@ h1 {
 h2 {
     border: 3px solid blue;
     border-radius: 12px;
-    padding: 3px;
-   
+    padding: 3px; 
 }
-error-card {
+
+.error-card {
     position: absolute;
     top: 0;
     left: 0;
@@ -22,10 +22,12 @@ error-card {
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 20px;
-  }
-  td:nth-child(even), th:nth-child(even) {
+ }
+
+ td:nth-child(even), th:nth-child(even) {
     background-color: #99bbf6;
-  }
+ }
+
   td:nth-child(odd), th:nth-child(odd) {
     background-color: #f699df;
-  }
+ }
