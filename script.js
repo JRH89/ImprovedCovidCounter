@@ -24,7 +24,6 @@ fetch(apiUrl)
     errorCard.classList.add('error-card');
     errorCard.innerHTML = `
       <p>An error occurred while fetching COVID-19 data:</p>
-      <pre>${error.message}</pre>
       <p>Please try again in a few moments.</p>
     `;
     document.body.appendChild(errorCard);
