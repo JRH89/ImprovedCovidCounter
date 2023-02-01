@@ -16,6 +16,76 @@
   <h1 class="h1" style="text-align: center; font-size:40px">Global COVID-19 Statistics</h1>
   <p style="text-align: center; font-size: 30px"><i><b>Total Cases Worldwide: </i></b><span id="total-cases"></span></p>
   <p style="text-align: center; font-size:30px"><i><b>Total Deaths Worldwide: </i></b><span id="total-deaths"></span></p>
+  
+  <div style="text-align:center; height: 50%; width: 100%;">
+  <canvas id="myChart2"></canvas>
+  <script>
+    // fetch data from the API
+    fetch("https://api.covid19api.com/summary")
+      .then(response => response.json())
+      .then(data => {
+        // get the latest data for all countries
+        const latestData = data.Countries[data.Countries.length - 1];
+
+        // extract the cases and deaths for the last 7 days
+        const cases = [
+          latestData.NewConfirmed,
+          data.Countries[data.Countries.length - 2].NewConfirmed,
+          data.Countries[data.Countries.length - 3].NewConfirmed,
+          data.Countries[data.Countries.length - 4].NewConfirmed,
+          data.Countries[data.Countries.length - 5].NewConfirmed,
+          data.Countries[data.Countries.length - 6].NewConfirmed,
+          data.Countries[data.Countries.length - 7].NewConfirmed
+        ];
+        const deaths = [
+          latestData.NewDeaths,
+          data.Countries[data.Countries.length - 2].NewDeaths,
+          data.Countries[data.Countries.length - 3].NewDeaths,
+          data.Countries[data.Countries.length - 4].NewDeaths,
+          data.Countries[data.Countries.length - 5].NewDeaths,
+          data.Countries[data.Countries.length - 6].NewDeaths,
+          data.Countries[data.Countries.length - 7].NewDeaths
+        ];
+
+        // create the chart
+        const ctx = document.getElementById("myChart2").getContext("2d");
+        const chart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: [
+              "Today",
+              "1 day ago",
+              "2 days ago",
+              "3 days ago",
+              "4 days ago",
+              "5 days ago",
+              "6 days ago"
+            ],
+            datasets: [
+              {
+                label: "Cases",
+                data: cases,
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                borderColor: "rgba(255, 99, 132, 1)",
+                borderWidth: 1,
+                fill: false
+              },
+              {
+                label: "Deaths",
+                data: deaths,
+                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                borderColor: "rgba(54, 162, 235, 1)",
+                borderWidth: 1,
+                fill: false
+              }
+            ]
+          }
+        });
+      });
+  </script>
+</div>
+  
+  
   <hr>
   <h2 class="h2" style="text-align: center; font-size:40px">COVID-19 Cases by Country</h2>
   <div>
@@ -84,125 +154,62 @@
   </script>
 
 </div>
+</canvas>
 <hr>
-<br>
 <div style="text-align:center; height:800; width:100%;">
 
-<canvas id="myChart1">
-<script>
-  // fetch data from the API
-  fetch("https://api.covid19api.com/summary")
-    .then(response => response.json())
-    .then(data => {
-      // process data and extract cases and deaths
-      const cases = data.Countries.map(c => c.TotalConfirmed);
-      const deaths = data.Countries.map(c => c.TotalDeaths);
-      
-      // create the chart
-      const ctx = document.getElementById("myChart1").getContext("2d");
-      const chart = new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: data.Countries.map(c => c.Country),
-          datasets: [
-            {
-              label: "Total Cases",
-              data: cases,
-              backgroundColor: "rgba(255, 99, 132, 0.8)",
-              borderColor: "rgb(162, 41, 41)",
-              borderWidth: 1
-            },
-            {
-              label: "Total Deaths",
-              data: deaths,
-              backgroundColor: "rgba(54, 162, 235, 0.8)",
-              borderColor: "rgba(54, 162, 235, 1)",
-              borderWidth: 1
-            }
-          ]
-        },
-        options: {
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: false
+  <canvas id="myChart3">
+    <script>
+      // fetch data from the API
+      fetch("https://api.covid19api.com/summary")
+        .then(response => response.json())
+        .then(data => {
+          // process data and extract cases and deaths
+          const cases = data.Countries.map(c => c.TotalConfirmed);
+          const deaths = data.Countries.map(c => c.TotalDeaths);
+          
+          // create the chart
+          const ctx = document.getElementById("myChart3").getContext("2d");
+          const chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: data.Countries.map(c => c.Country),
+              datasets: [
+                {
+                  label: "Total Cases",
+                  data: cases,
+                  backgroundColor: "rgba(255, 99, 132, 0.8)",
+                  borderColor: "rgb(162, 41, 41)",
+                  borderWidth: 1
+                },
+                {
+                  label: "Total Deaths",
+                  data: deaths,
+                  backgroundColor: "rgba(54, 162, 235, 0.8)",
+                  borderColor: "rgba(54, 162, 235, 1)",
+                  borderWidth: 1
                 }
+              ]
+            },
+            options: {
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      beginAtZero: false
+                    }
+                  }
+                ]
               }
-            ]
-          }
-        }
-      });
-    });
-</script>
-</div>
-<div style="text-align:center; height:800; width:100%;">>
-  <canvas id="myChart2"></canvas>
-  <script>
-    // fetch data from the API
-    fetch("https://api.covid19api.com/summary")
-      .then(response => response.json())
-      .then(data => {
-        // get the latest data for all countries
-        const latestData = data.Countries[data.Countries.length - 1];
-
-        // extract the cases and deaths for the last 7 days
-        const cases = [
-          latestData.NewConfirmed,
-          data.Countries[data.Countries.length - 2].NewConfirmed,
-          data.Countries[data.Countries.length - 3].NewConfirmed,
-          data.Countries[data.Countries.length - 4].NewConfirmed,
-          data.Countries[data.Countries.length - 5].NewConfirmed,
-          data.Countries[data.Countries.length - 6].NewConfirmed,
-          data.Countries[data.Countries.length - 7].NewConfirmed
-        ];
-        const deaths = [
-          latestData.NewDeaths,
-          data.Countries[data.Countries.length - 2].NewDeaths,
-          data.Countries[data.Countries.length - 3].NewDeaths,
-          data.Countries[data.Countries.length - 4].NewDeaths,
-          data.Countries[data.Countries.length - 5].NewDeaths,
-          data.Countries[data.Countries.length - 6].NewDeaths,
-          data.Countries[data.Countries.length - 7].NewDeaths
-        ];
-
-        // create the chart
-        const ctx = document.getElementById("myChart2").getContext("2d");
-        const chart = new Chart(ctx, {
-          type: "line",
-          data: {
-            labels: [
-              "Today",
-              "1 day ago",
-              "2 days ago",
-              "3 days ago",
-              "4 days ago",
-              "5 days ago",
-              "6 days ago"
-            ],
-            datasets: [
-              {
-                label: "Cases",
-                data: cases,
-                backgroundColor: "rgba(255, 99, 132, 0.2)",
-                borderColor: "rgba(255, 99, 132, 1)",
-                borderWidth: 1,
-                fill: false
-              },
-              {
-                label: "Deaths",
-                data: deaths,
-                backgroundColor: "rgba(54, 162, 235, 0.2)",
-                borderColor: "rgba(54, 162, 235, 1)",
-                borderWidth: 1,
-                fill: false
-              }
-            ]
-          }
+            }
+          });
         });
-      });
-  </script>
-</div>
+    </script>
+  
+  </div>
+  </canvas>
+<br>
+
  <div>
   <hr>
       <footer>

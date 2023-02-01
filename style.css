@@ -22,8 +22,8 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
+    background-color: rgba(251, 249, 249, 0.8);
+    color: red;
     padding: 20px;
  }
 
