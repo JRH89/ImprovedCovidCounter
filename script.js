@@ -14,6 +14,8 @@ fetch(apiUrl)
         <td>${country.TotalConfirmed}</td>
         <td>${country.TotalDeaths}</td>
         <td>${Math.round((country.TotalDeaths/country.TotalConfirmed)*100)}%</td>
+        <td>${country.NewConfirmed}</td>
+        <td>${country.NewDeaths}</td>
         `;
       document.getElementById('cases-by-country').appendChild(row);
     });

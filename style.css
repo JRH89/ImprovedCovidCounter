@@ -27,10 +27,17 @@ h2 {
     padding: 20px;
  }
 
+
+ body {
+    background-color: black;
+    color: white;
+ }
+
+ 
  td:nth-child(even), th:nth-child(even) {
-    background-color: #99bbf6;
+    background-color: rgb(12, 51, 119);
  }
 
   td:nth-child(odd), th:nth-child(odd) {
-    background-color: #f699df;
+    background-color: rgb(162, 41, 41);
  }
