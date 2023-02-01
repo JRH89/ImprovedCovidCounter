@@ -20,7 +20,7 @@
   <hr>
   <h2 class="h2" style="text-align: center; font-size:40px">COVID-19 Cases by Country</h2>
   <div>
-  <div style="overflow:scroll; height:400px; width:50%; float: left">
+  <div style="overflow:scroll; height:400px; width:100%;">
   <table id="cases-by-country" style="margin: auto">
     <tr>
       <th align="left"><u>Country:</u></th>
@@ -32,7 +32,9 @@
     </tr>
   </table>
   </div>
-  <div style="overflow:scroll; height:400px; width:50%; float: right">
+  <hr>
+  <br>
+  <div style="text-align:center; height:600; width:100%;">
 
 <canvas id="myChart">
   <script>
@@ -83,12 +85,64 @@
   </script>
 
 </div>
- 
+<hr>
+<br>
+<div style="text-align:center; height:600; width:100%;">
 
-
-
+<canvas id="myChart1">
+<script>
+  // fetch data from the API
+  fetch("https://api.covid19api.com/summary")
+    .then(response => response.json())
+    .then(data => {
+      // process data and extract cases and deaths
+      const cases = data.Countries.map(c => c.TotalConfirmed);
+      const deaths = data.Countries.map(c => c.TotalDeaths);
+      
+      // create the chart
+      const ctx = document.getElementById("myChart1").getContext("2d");
+      const chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: data.Countries.map(c => c.Country),
+          datasets: [
+            {
+              label: "Total Cases",
+              data: cases,
+              backgroundColor: "rgba(255, 99, 132, 0.8)",
+              borderColor: "rgb(162, 41, 41)",
+              borderWidth: 1
+            },
+            {
+              label: "Total Deaths",
+              data: deaths,
+              backgroundColor: "rgba(54, 162, 235, 0.8)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: false
+                }
+              }
+            ]
+          }
+        }
+      });
+    });
+</script>
 
 </div>
+
+
+
+
+
 
   
  <div>
@@ -100,13 +154,11 @@
   <footer>
        
            
-            <div style="float:left; width:100%">Data supplied by the Covid19API
- <div style="float:right">Published with GithubPages</div>
-            </div> <br>
-           
-           
-           <div style="text-align:center; font-size:20px; color:goldenrod">Hooker Hill Studios © 2023
-            </div>
+            <p style="text-align:center">Data supplied by the Covid19API</p>
+            <p style="text-align:center">Published with GithubPages</p>
+            
+           <p style="text-align:center; font-size:20px; color:goldenrod">Hooker Hill Studios © 2023
+            </p>
        
         
   </footer>
