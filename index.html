@@ -20,8 +20,8 @@
 
 <p style="text-align: center; font-size:30px"><i><b>Total Deaths Worldwide: </b></i><span id="total-deaths"></span></p>
 
-<br><hr><br><br>
-<div style="text-align:center; height: 50%; width: 100%;">
+<hr><br><br>
+<div style="text-align:center; height: 400; width: 100%;">
     <canvas id="myChart2"></canvas>
     <script>
       // fetch data from the API
@@ -54,7 +54,7 @@
                 yAxes: [
                   {
                     ticks: {
-                      beginAtZero: true
+                      beginAtZero: false
                     }
                   }
                 ]
@@ -63,12 +63,11 @@
           });
         });
     </script>
-
 </div>
 <br>
 <hr>
 <br>
-<div style="text-align:center; height: 50%; width: 100%;">
+<div style="text-align:center; height: 400; width: 100%;">
     <canvas id="myChart3"></canvas>
     <script>
     // fetch data from the API
@@ -77,16 +76,14 @@
       .then(data => {
         // process data and extract cases and deaths
         const cases = data.Countries.map(c => c.NewConfirmed);
-        const deaths = data.Countries.map(c => c.NewDeaths);
-        
+        const deaths = data.Countries.map(c => c.NewDeaths);       
         // create the chart
         const ctx = document.getElementById("myChart3").getContext("2d");
         const chart = new Chart(ctx, {
           type: "bar",
           data: {
             labels: data.Countries.map(c => c.Country),
-            datasets: [
-                      
+            datasets: [                     
               {
                 label: "New Deaths",
                 data: deaths,
@@ -110,9 +107,7 @@
         });
       });
   </script>
-
 </div>
-
 <hr>
 <h2 class="h2" style="text-align: center; font-size:40px">COVID-19 Cases by Country</h2>
 <div>
@@ -129,16 +124,11 @@
         </table>
     </div>
     <hr>
-    <br>
-
     <div>
-
         <footer>
             <p style="text-align:center">Data supplied by the Covid19API</p>
             <p style="text-align:center">Published with GithubPages</p>
-
-            <p style="text-align:center; font-size:20px; color:goldenrod">Hooker Hill Studios © 2023
-            </p>
+            <p style="text-align:center; font-size:20px; color:goldenrod">Hooker Hill Studios © 2023</p>      
         </footer>
     </div></div>
 </body>
