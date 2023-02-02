@@ -12,16 +12,16 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 </head>
 <body>
-  
-  <script type="text/javascript" src="script.js" defer></script>
-  <h1 class="h1" style="text-align: center; font-size:40px">Global COVID-19 Statistics</h1>
-  <br><br><br>
-  <p style="text-align: center; font-size: 30px"><i><b>Total Cases Worldwide: </i></b><span id="total-cases"></span></p>
-  
-  <p style="text-align: center; font-size:30px"><i><b>Total Deaths Worldwide: </i></b><span id="total-deaths"></span></p>
-  
-  <br><br><br><br><hr><br><br>
-  <div style="text-align:center; height: 50%; width: 100%;">
+
+<script type="text/javascript" src="script.js" defer></script>
+<h1 class="h1" style="text-align: center; font-size:40px">Global COVID-19 Statistics</h1>
+<br><br><br>
+<p style="text-align: center; font-size: 30px"><i><b>Total Cases Worldwide: </b></i><span id="total-cases"></span></p>
+
+<p style="text-align: center; font-size:30px"><i><b>Total Deaths Worldwide: </b></i><span id="total-deaths"></span></p>
+
+<br><br><br><br><hr><br><br>
+<div style="text-align:center; height: 50%; width: 100%;">
     <canvas id="myChart2"></canvas>
     <script>
       // fetch data from the API
@@ -63,14 +63,14 @@
           });
         });
     </script>
-    
+
 </div>
 <br>
 <hr>
 <br>
 <div style="text-align:center; height: 50%; width: 100%;">
-  <canvas id="myChart3"></canvas>
-  <script>
+    <canvas id="myChart3"></canvas>
+    <script>
     // fetch data from the API
     fetch("https://api.covid19api.com/summary")
       .then(response => response.json())
@@ -110,35 +110,36 @@
         });
       });
   </script>
-  
+
 </div>
-  
-  <hr>
-  <h2 class="h2" style="text-align: center; font-size:40px">COVID-19 Cases by Country</h2>
-  <div>
-  <div style="overflow:scroll; height:400px; width:device-width;">
-  <table id="cases-by-country" style="margin: auto">
-    <tr>
-      <th align="left"><u>Country:</u></th>
-      <th align="left"><u>Cases:</u></th>
-      <th align="left"><u>Deaths:</u></th>
-      <th align="left"><u>Mortality Rate:</u></th>
-      <th align="left"><u>New Cases:</u></th>
-      <th align="left"><u>New Deaths:</u></th>
-    </tr>
-  </table>
-  </div>
-  <hr>
-  <br>
-  
+
+<hr>
+<h2 class="h2" style="text-align: center; font-size:40px">COVID-19 Cases by Country</h2>
+<div>
+    <div style="overflow:scroll; height:400px; width:device-width;">
+        <table id="cases-by-country" style="margin: auto">
+            <tr>
+                <th align="left"><u>Country:</u></th>
+                <th align="left"><u>Cases:</u></th>
+                <th align="left"><u>Deaths:</u></th>
+                <th align="left"><u>Mortality Rate:</u></th>
+                <th align="left"><u>New Cases:</u></th>
+                <th align="left"><u>New Deaths:</u></th>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <br>
+
     <div>
-  
-      <footer>
+
+        <footer>
             <p style="text-align:center">Data supplied by the Covid19API</p>
             <p style="text-align:center">Published with GithubPages</p>
-            
-           <p style="text-align:center; font-size:20px; color:goldenrod">Hooker Hill Studios © 2023
-            </p>     
-      </footer>
+
+            <p style="text-align:center; font-size:20px; color:goldenrod">Hooker Hill Studios © 2023
+            </p>
+        </footer>
+    </div></div>
 </body>
 </html>
