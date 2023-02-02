@@ -31,7 +31,7 @@
           // create the chart
           const ctx = document.getElementById("myChart2").getContext("2d");
           const chart = new Chart(ctx, {
-            type: "line",
+            type: "scatter",
             data: {
               labels: data.Countries.map(c => c.Country),
               datasets: [
