@@ -31,7 +31,7 @@
           // create the chart
           const ctx = document.getElementById("myChart2").getContext("2d");
           const chart = new Chart(ctx, {
-            type: "bar",
+            type: "line",
             data: {
               labels: data.Countries.map(c => c.Country),
               datasets: [
@@ -40,14 +40,14 @@
                   data: cases,
                   backgroundColor: "rgba(255, 99, 132, 0.2)",
                   borderColor: "rgba(255, 99, 132, 1)",
-                  borderWidth: 2
+                  borderWidth: 1
                 },
                 {
                   label: "New Deaths",
                   data: deaths,
                   backgroundColor: "rgba(54, 162, 235, 0.2)",
                   borderColor: "rgba(54, 162, 235, 1)",
-                  borderWidth: 2
+                  borderWidth: 1
                 }
               ]
             },
