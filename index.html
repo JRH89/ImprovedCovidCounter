@@ -18,71 +18,54 @@
   <p style="text-align: center; font-size:30px"><i><b>Total Deaths Worldwide: </i></b><span id="total-deaths"></span></p>
   
   <div style="text-align:center; height: 50%; width: 100%;">
-  <canvas id="myChart2"></canvas>
-  <script>
-    // fetch data from the API
-    fetch("https://api.covid19api.com/summary")
-      .then(response => response.json())
-      .then(data => {
-        // get the latest data for all countries
-        const latestData = data.Countries[data.Countries.length - 1];
-
-        // extract the cases and deaths for the last 7 days
-        const cases = [
-          latestData.NewConfirmed,
-          data.Countries[data.Countries.length - 2].NewConfirmed,
-          data.Countries[data.Countries.length - 3].NewConfirmed,
-          data.Countries[data.Countries.length - 4].NewConfirmed,
-          data.Countries[data.Countries.length - 5].NewConfirmed,
-          data.Countries[data.Countries.length - 6].NewConfirmed,
-          data.Countries[data.Countries.length - 7].NewConfirmed
-        ];
-        const deaths = [
-          latestData.NewDeaths,
-          data.Countries[data.Countries.length - 2].NewDeaths,
-          data.Countries[data.Countries.length - 3].NewDeaths,
-          data.Countries[data.Countries.length - 4].NewDeaths,
-          data.Countries[data.Countries.length - 5].NewDeaths,
-          data.Countries[data.Countries.length - 6].NewDeaths,
-          data.Countries[data.Countries.length - 7].NewDeaths
-        ];
-
-        // create the chart
-        const ctx = document.getElementById("myChart2").getContext("2d");
-        const chart = new Chart(ctx, {
-          type: "line",
-          data: {
-            labels: [
-              "Today",
-              "1 day ago",
-              "2 days ago",
-              "3 days ago",
-              "4 days ago",
-              "5 days ago",
-              "6 days ago"
-            ],
-            datasets: [
-              {
-                label: "Cases (x 1000)",
-                data: cases,
-                backgroundColor: "rgba(54, 162, 235, 0.2)",
-                borderColor: "rgba(54, 162, 235, 1)",
-                borderWidth: 1,
-                fill: true
-              },
-              {
-                label: "Deaths (x 1000)",
-                data: deaths,
-                backgroundColor: "rgba(255, 99, 132, 0.2)",
-                borderColor: "rgba(255, 99, 132, 1)",
-                borderWidth: 1,
-                fill: true
+    <canvas id="myChart2"></canvas>
+    <script>
+      // fetch data from the API
+      fetch("https://api.covid19api.com/summary")
+        .then(response => response.json())
+        .then(data => {
+          // process data and extract cases and deaths
+          const cases = data.Countries.map(c => c.NewConfirmed);
+          const deaths = data.Countries.map(c => c.NewDeaths);
+          
+          // create the chart
+          const ctx = document.getElementById("myChart2").getContext("2d");
+          const chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: data.Countries.map(c => c.Country),
+              datasets: [
+                {
+                  label: "New Cases",
+                  data: cases,
+                  backgroundColor: "rgba(255, 99, 132, 0.2)",
+                  borderColor: "rgba(255, 99, 132, 1)",
+                  borderWidth: 2
+                },
+                {
+                  label: "New Deaths",
+                  data: deaths,
+                  backgroundColor: "rgba(54, 162, 235, 0.2)",
+                  borderColor: "rgba(54, 162, 235, 1)",
+                  borderWidth: 2
+                }
+              ]
+            },
+            options: {
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      beginAtZero: true
+                    }
+                  }
+                ]
               }
-            ]
-          }
+            }
+          });
         });
-      });
-  </script>
+    </script>
+    
 </div>
   
   
@@ -103,9 +86,8 @@
   </div>
   <hr>
   <br>
-  <div style="text-align:center; height:800; width:100%;">
-
- <div>
+  
+    <div>
   
       <footer>
             <p style="text-align:center">Data supplied by the Covid19API</p>
