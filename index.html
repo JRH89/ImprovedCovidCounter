@@ -12,11 +12,15 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 </head>
 <body>
+  
   <script type="text/javascript" src="script.js" defer></script>
   <h1 class="h1" style="text-align: center; font-size:40px">Global COVID-19 Statistics</h1>
+  <br><br><br>
   <p style="text-align: center; font-size: 30px"><i><b>Total Cases Worldwide: </i></b><span id="total-cases"></span></p>
+  
   <p style="text-align: center; font-size:30px"><i><b>Total Deaths Worldwide: </i></b><span id="total-deaths"></span></p>
   
+  <br><br><br><br><hr><br><br>
   <div style="text-align:center; height: 50%; width: 100%;">
     <canvas id="myChart2"></canvas>
     <script>
@@ -38,17 +42,11 @@
                 {
                   label: "New Cases",
                   data: cases,
-                  backgroundColor: "rgba(255, 99, 132, 0.2)",
-                  borderColor: "rgba(255, 99, 132, 1)",
-                  borderWidth: 1
-                },
-                {
-                  label: "New Deaths",
-                  data: deaths,
                   backgroundColor: "rgba(54, 162, 235, 0.2)",
                   borderColor: "rgba(54, 162, 235, 1)",
                   borderWidth: 1
-                }
+                },                
+                
               ]
             },
             options: {
@@ -67,7 +65,53 @@
     </script>
     
 </div>
+<br>
+<hr>
+<br>
+<div style="text-align:center; height: 50%; width: 100%;">
+  <canvas id="myChart3"></canvas>
+  <script>
+    // fetch data from the API
+    fetch("https://api.covid19api.com/summary")
+      .then(response => response.json())
+      .then(data => {
+        // process data and extract cases and deaths
+        const cases = data.Countries.map(c => c.NewConfirmed);
+        const deaths = data.Countries.map(c => c.NewDeaths);
+        
+        // create the chart
+        const ctx = document.getElementById("myChart3").getContext("2d");
+        const chart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: data.Countries.map(c => c.Country),
+            datasets: [
+                      
+              {
+                label: "New Deaths",
+                data: deaths,
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                borderColor: "rgba(255, 99, 132, 1)",
+                borderWidth: 1
+              }
+            ]
+          },
+          options: {
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    beginAtZero: true
+                  }
+                }
+              ]
+            }
+          }
+        });
+      });
+  </script>
   
+</div>
   
   <hr>
   <h2 class="h2" style="text-align: center; font-size:40px">COVID-19 Cases by Country</h2>
